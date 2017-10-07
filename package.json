@@ -1,0 +1,19 @@
+{
+  "name": "elparser",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "repository": {},
+  "license": "MIT",
+  "scripts": {
+    "test": "tape --experimental-modules test/*.mjs"
+  },
+  "devDependencies": {
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "htmlparser2": "^3.9.2",
+    "prettier": "^1.7.4",
+    "ramda": "^0.24.1"
+  }
+}

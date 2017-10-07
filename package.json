@@ -1,5 +1,5 @@
 {
-  "name": "elparser",
+  "name": "elang-parser",
   "version": "1.0.0",
   "main": "index.mjs",
   "repository": {},

@@ -11,7 +11,7 @@ This parser will take `elementary` code and compile into javascript code
 ## Usage
 
 ```
-import parser from 'elparser'
+import parser from 'elang-parser'
 
 parser(`
   <import as="http" from="http" />

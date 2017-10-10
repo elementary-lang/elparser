@@ -1,7 +1,7 @@
 const ItemList = function(parent) {
   this.parent = parent
   this.content = ''
-  this.spacer = ''
+  this.spacer = ' '
   this.indent = parent ? parent.indent : ''
   this.isFirstItem = true
 }

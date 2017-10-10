@@ -50,15 +50,18 @@ export default function(el, cb) {
             [equals('export'), renderExport(element[1], elementContent)],
             [equals('import'), renderImport(element[1], elementContent)],
             [equals('function'), renderFunction(element[1], elementContent)],
+            [equals('const'), renderConst(element[1], elementContent)],
+            [equals('return'), renderReturn(element[1], elementContent)],
             [T, renderBasic(element[1], elementContent)]
           ])(element[0])
         )
       },
       onend: function() {
+        //cb(null, currentItemList.content)
         cb(null, prettier.format(currentItemList.content, { semi: false }))
       }
     },
-    { decodeEntities: true, lowerCaseTags: false }
+    { decodeEntities: true, lowerCaseTags: false, recognizeSelfClosing: true }
   )
   parser.write(el)
   parser.end()
@@ -83,10 +86,10 @@ function renderFunction(attribs, elementContent) {
     let args = omit(['name'], attribs)
     args = isEmpty(args) ? '' : '{' + Object.keys(args).join(',') + '}'
     const lines = elementContent
-
+    //console.log('lines: ', lines)
     return `
 function ${attribs['name']} (${args}) {
-return (${lines})
+  ${lines}
 }
     `
   }
@@ -100,6 +103,21 @@ function renderBasic(attribs, elementContent) {
     let args = isEmpty(attribs)
       ? ''
       : '{' + Object.keys(attribs).map(k => `${k}: ${attribs[k]}`) + '}'
-    return `${tag}(${args})`
+    return `${tag}(${args})\n`
+  }
+}
+
+function renderConst(attribs, elementContent) {
+  return function(tag) {
+    if (!attribs.value) {
+      attribs.value = elementContent
+    }
+    return `const ${attribs.name} = ${attribs.value}\n`
+  }
+}
+
+function renderReturn(attribs, elementContent) {
+  return function(tag) {
+    return `return ${elementContent}`
   }
 }

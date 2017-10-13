@@ -118,6 +118,6 @@ function renderConst(attribs, elementContent) {
 
 function renderReturn(attribs, elementContent) {
   return function(tag) {
-    return `return ${elementContent}`
+    return `return ${trim(elementContent)}`
   }
 }

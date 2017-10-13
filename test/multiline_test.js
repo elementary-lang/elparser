@@ -3,6 +3,10 @@ import parser from '../'
 
 test('multiline test', t => {
   const el = `
+<function name="log" data>
+  <js>console.log(data)</js>
+</function>
+
 <function name="uppercase" value>
   <return><js>value.toUpperCase()</js></return>
 </function>
@@ -20,10 +24,10 @@ test('multiline test', t => {
   `
 
   parser(el, (err, code) => {
-    console.log(code)
+    //console.log(code)
     t.equals(
       code,
-      'function log({ data }) {\n  return console.log(data)\n}\n\nfunction hello({ text }) {\n  return "Hello " + text\n}\nlog({ data: hello({ text: "World" }) })\n'
+      'function log({ data }) {\n  console.log(data)\n}\n\nfunction uppercase({ value}) {\n  return value.toUpperCase()\n}\n\nfunction hello({ text }) {\n  const foo = uppercase({ value: text })\n\n  return "Hello " + foo\n}\nlog({ data: hello({ text: "World" }) })\n'
     )
     t.end()
   })

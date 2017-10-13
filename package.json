@@ -1,16 +1,18 @@
 {
   "name": "elang-parser",
   "version": "1.1.0",
-  "main": "index.mjs",
+  "main": "index.js",
   "repository": {},
   "license": "MIT",
   "scripts": {
-    "test": "tape --experimental-modules test/*.mjs"
+    "test": "tape -r @std/esm test/*.js"
   },
   "devDependencies": {
     "tape": "^4.8.0"
   },
+  "@std/esm": "js",
   "dependencies": {
+    "@std/esm": "^0.11.3",
     "express": "^4.16.1",
     "htmlparser2": "^3.9.2",
     "prettier": "^1.7.4",

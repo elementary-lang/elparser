@@ -8,7 +8,9 @@ test('parse elementary hello world app', t => {
 </function>
 
 <function name="hello" text>
-  <js>"Hello " + text</js>
+  <return>
+    <js>"Hello " + text</js>
+  </return>
 </function>
 
 <log>
@@ -17,10 +19,9 @@ test('parse elementary hello world app', t => {
   `
 
   parser(el, (err, code) => {
-    console.log(code)
     t.equals(
       code,
-      'function log({ data }) {\n  return console.log(data)\n}\n\nfunction hello({ text }) {\n  return "Hello " + text\n}\nlog({ data: hello({ text: "World" }) })\n'
+      'function log({ data }) {\n  console.log(data)\n}\n\nfunction hello({ text }) {\n  return "Hello " + text\n}\nlog({ data: hello({ text: "World" }) })\n'
     )
     t.end()
   })

@@ -1,5 +1,5 @@
 import htmlparser from 'htmlparser2'
-import prettier from 'prettier'
+//import prettier from 'prettier'
 import ItemList from './item-list'
 import R from 'ramda'
 const {
@@ -57,8 +57,8 @@ export default function(el, cb) {
         )
       },
       onend: function() {
-        //cb(null, currentItemList.content)
-        cb(null, prettier.format(currentItemList.content, { semi: false }))
+        cb(null, currentItemList.content)
+        //cb(null, prettier.format(currentItemList.content, { semi: false }))
       }
     },
     { decodeEntities: true, lowerCaseTags: false, recognizeSelfClosing: false }

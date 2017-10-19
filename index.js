@@ -1,7 +1,6 @@
-import htmlparser from 'htmlparser2'
-//import prettier from 'prettier'
-import ItemList from './item-list'
-import R from 'ramda'
+const htmlparser = require('htmlparser2')
+const ItemList = require('./item-list')
+const R = require('ramda')
 const {
   omit,
   trim,
@@ -25,7 +24,7 @@ var elementStack = []
 const hasText = compose(gt(__, 0), length, trim)
 const stringIsNotEmpty = compose(not, isEmpty, trim)
 
-export default function(el, cb) {
+module.exports = function(el, cb) {
   let currentItemList = new ItemList(null)
 
   const parser = new htmlparser.Parser(
@@ -58,7 +57,6 @@ export default function(el, cb) {
       },
       onend: function() {
         cb(null, currentItemList.content)
-        //cb(null, prettier.format(currentItemList.content, { semi: false }))
       }
     },
     { decodeEntities: true, lowerCaseTags: false, recognizeSelfClosing: false }

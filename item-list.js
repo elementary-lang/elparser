@@ -32,4 +32,4 @@ ItemList.prototype.add = function(data, ignoreComma) {
   this.content += data
 }
 
-export default ItemList
+module.exports = ItemList

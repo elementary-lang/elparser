@@ -1,5 +1,5 @@
-import test from 'tape'
-import parser from '../'
+const test = require('tape')
+const parser = require('../')
 
 test('parse elementary hello world app', t => {
   const el = `
@@ -21,7 +21,7 @@ test('parse elementary hello world app', t => {
   parser(el, (err, code) => {
     t.equals(
       code,
-      'function log({ data }) {\n  console.log(data)\n}\n\nfunction hello({ text }) {\n  return "Hello " + text\n}\nlog({ data: hello({ text: "World" }) })\n'
+      '\nfunction log ({data}) {\n  console.log(data)\n  \n}\n    \nfunction hello ({text}) {\n  return "Hello " + text \n}\n   log({data: hello({text: ("World")})})\n'
     )
     t.end()
   })
